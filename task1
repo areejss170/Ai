@@ -1,56 +1,29 @@
-sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+  
+- Robot operating system installation and configuration
 
-sudo apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+My first task is about downloading and installing the Robot arm package on Moveit and ROS and writing the steps.
 
-sudo apt-get update
 
-sudo apt-get install ros-kinetic-desktop-full
 
-apt-cache search ros-kinetic
+Steps:
 
-echo "source /opt/ros/kinetic/setup.bash" >> ~/.bashrc
-source ~/.bashrc
 
-sudo apt install python-rosdep python-rosinstall python-rosinstall-generator python-wstool build-essential
 
-sudo apt install python-rosdep
+1. Installing an appropriate Virtual machine software in this case (virtualbox).
 
-sudo rosdep init
+2. Downloading Ubuntu 18.0 which is the version of Ubuntu that ROS Melodic can efficiently work with.
 
-rosdep update
+3. Installing the Virtual machine and sitting up the new Operating System.
 
-sudo apt-get install ros-noetic-catkin
+4. Opening the terminal and Download the ROS Melodic software using the steps on the download page (http://wiki.ros.org/melodic/Installation/Ubuntu).
 
-mkdir -p ~/catkin_ws/src
+5. Making sure that ROS Melodic is working by typing the ($ roscore) command in the terminal.
+6. Installing and configuiring the ROS environment.
 
-cd ~/catkin_ws/
+7. Installing the Robot Arm package from the Smart Methods github repositary by using the terminal.
 
-catkin_make
+8. Installing the dependencies (moveit,joint state puplisher,gazebo) using the terminal.
 
-cd ~/catkin_ws/src
+9. Compile the package.
 
-git clone https://github.com/smart-methods/arduino_robot_arm.git 
-
-cd ~/catkin_ws
-
-rosdep install --from-paths src --ignore-src -r -y
-
-sudo apt-get install ros-kinetic-moveit
-
-sudo apt-get install ros-kinetic-joint-state-publisher ros-kinetic-joint-state-publisher-gui
-
-sudo apt-get install ros-kinetic-gazebo-ros-control joint-state-publisher
-
-sudo apt-get install ros-kinetic-ros-controllers ros-kinetic-ros-control
-
-sudo nano ~/.bashrc
-
-at the end of the (bashrc) file add the follwing line
-(source /home/wesam/catkin_ws/devel/setup.bash)
-then 
-ctrl + o
-
-source ~/.bashrc
-
-roslaunch robot_arm_pkg check_motors.launch
-
+10. Using the ($ roslaunch robot_arm_pkg check_motors.launch) command to launch the Robotic Arm control
